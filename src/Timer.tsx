@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import './Timer.css'
 
 // precision - delta of milliseconds, doesnt work well using preciision less than 10 ms
 function Timer({ initTime, precision, name }: { initTime: number, precision: number, name: string }) {
@@ -26,7 +25,7 @@ function Timer({ initTime, precision, name }: { initTime: number, precision: num
 
   return (
     <>
-      <div className="card">
+      <div style={{marginTop: 0}} className="card">
         <h1>{(seconds / multiplier).toFixed(Math.log10(multiplier))} </h1> <h3> seconds left</h3>
         <button disabled={isRunning} onClick={() => setRunning(true)}>Start </button>
         <button onClick={() => setRunning(false)}>Pause </button>
