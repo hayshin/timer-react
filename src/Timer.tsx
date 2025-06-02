@@ -3,13 +3,18 @@ import { useState, useEffect } from 'react'
 // precision - delta of milliseconds, doesnt work well using preciision less than 10 ms
 function Timer({ initTime, precision, name }: { initTime: number, precision: number, name: string }) {
   let multiplier = 1000 / precision;
-  initTime *= multiplier
 
-  const [seconds, setSeconds] = useState(initTime)
+  const [seconds, setSeconds] = useState(initTime * multiplier)
   const [isRunning, setRunning] = useState(false)
   const [isEnded, setEnded] = useState(false)
 
   useEffect(() => {
+    setSeconds(initTime * multiplier)
+    setRunning(false)
+    setEnded(false)
+  }, [initTime, multiplier])
+  useEffect(() => {
+
     let interval: ReturnType<typeof setInterval>;
     if (isRunning && seconds > 0) {
       interval = setInterval(() => {
